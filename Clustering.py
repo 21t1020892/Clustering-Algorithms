@@ -337,18 +337,21 @@ def clustering():
         st.markdown("""
         - **DBSCAN**: Phân cụm dựa trên mật độ, không cần chỉ định số cụm trước.
         - **Tham số:**
-          - **eps**: Khoảng cách tối đa giữa hai điểm để coi là cùng cụm.
-          - **min_samples**: Số lượng điểm tối thiểu để tạo thành một cụm.
+        - **eps**: Khoảng cách tối đa giữa hai điểm để coi là cùng cụm.
+        - **min_samples**: Số lượng điểm tối thiểu để tạo thành một cụm.
         """)
+        
         eps = st.slider("eps (khoảng cách tối đa):", 0.1, 10.0, 1.0)
         min_samples = st.slider("min_samples (số mẫu tối thiểu):", 1, 20, 5)
+
+        # Sửa lỗi min_value >= max_value
         min_val = 1
-        max_val = 10  # Giả sử đây là giá trị hợp lệ
+        max_val = 10  # Giá trị tối đa có thể bị thay đổi
+
         if min_val >= max_val:
-            max_val = min_val + 1  # Đảm bảo max > min
+            max_val = min_val + 1  # Đảm bảo max_val luôn lớn hơn min_val
 
-        st.slider("Chọn số chiều giảm xuống", min_value=min_val, max_value=max_val, value=min_val)
-
+        selected_dim = st.slider("Chọn số chiều giảm xuống", min_value=min_val, max_value=max_val, value=min_val)
 
         if st.button("Phân cụm với DBSCAN"):
             with mlflow.start_run(run_name=f"DBSCAN_{st.session_state['run_name']}"):
@@ -363,18 +366,23 @@ def clustering():
                     model.fit(X_train)
                     progress_bar.progress(0.7)  # Sau khi fit
                     labels = model.labels_
-                    if len(np.unique(labels)) > 1 and not np.all(labels == -1):
+                    
+                    # Kiểm tra nếu DBSCAN phân cụm thành công
+                    if len(set(labels)) > 1 and not all(label == -1 for label in labels):
                         silhouette_avg = silhouette_score(X_train, labels)
                     else:
                         silhouette_avg = None
+                    
                     progress_bar.progress(1.0)  # Hoàn thành
 
                     mlflow.log_param("method", "DBSCAN")
                     mlflow.log_param("eps", eps)
                     mlflow.log_param("min_samples", min_samples)
                     mlflow.log_param("num_samples", X_train.shape[0])
+                    
                     if silhouette_avg is not None:
                         mlflow.log_metric("silhouette_score", silhouette_avg)
+                    
                     mlflow.sklearn.log_model(model, "dbscan_model")
 
                     st.session_state.clustering_results = {
@@ -384,6 +392,10 @@ def clustering():
                         "run_name": f"DBSCAN_{st.session_state['run_name']}",
                         "status": "success"
                     }
+
+                    if "models" not in st.session_state:
+                        st.session_state.models = []
+
                     st.session_state.models.append({
                         "name": "dbscan",
                         "run_name": f"DBSCAN_{st.session_state['run_name']}",
@@ -397,21 +409,26 @@ def clustering():
                 except Exception as e:
                     error_message = str(e)
                     st.error(f"❌ Lỗi khi chạy DBSCAN: {error_message}")
+                    
                     if "memory" in error_message.lower():
                         st.error("⚠️ Lỗi này có thể do chọn toàn bộ dữ liệu (70,000 mẫu). Hãy giảm số lượng mẫu!")
+                    
                     progress_bar.progress(0)  # Reset thanh trạng thái
+                    
                     mlflow.log_param("method", "DBSCAN")
                     mlflow.log_param("eps", eps)
                     mlflow.log_param("min_samples", min_samples)
                     mlflow.log_param("num_samples", X_train.shape[0])
                     mlflow.log_param("status", "failed")
                     mlflow.log_param("error_message", error_message)
+
                     st.session_state.clustering_results = {
                         "method": "DBSCAN",
                         "error_message": error_message,
                         "run_name": f"DBSCAN_{st.session_state['run_name']}",
                         "status": "failed"
                     }
+
 
     # Hiển thị kết quả
     if st.session_state.clustering_results:
