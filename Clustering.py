@@ -18,10 +18,10 @@ from datetime import datetime
 
 # Hàm khởi tạo MLflow
 def mlflow_input():
-    DAGSHUB_MLFLOW_URI = "https://dagshub.com/TonThatTruongVu/MNIST-ClusteringAlgorithms.mlflow"
+    DAGSHUB_MLFLOW_URI = "https://dagshub.com/21t1020892/Clustering-Algorithms.mlflow"
     mlflow.set_tracking_uri(DAGSHUB_MLFLOW_URI)
-    os.environ["MLFLOW_TRACKING_USERNAME"] = "TonThatTruongVu"
-    os.environ["MLFLOW_TRACKING_PASSWORD"] = "519c4a864e131de52197f54d170c130beb15ffd5"
+    os.environ["MLFLOW_TRACKING_USERNAME"] = "21t1020892"
+    os.environ["MLFLOW_TRACKING_PASSWORD"] = "xN8@Q7V@Pbr6CYZ"
     mlflow.set_experiment("MNIST_Clustering")
     st.session_state['mlflow_url'] = DAGSHUB_MLFLOW_URI
 
