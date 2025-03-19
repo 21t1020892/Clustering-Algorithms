@@ -74,7 +74,7 @@ def data():
         st.info("ℹ️ Nhấn nút 'Tải dữ liệu từ OpenML' để tải và hiển thị dữ liệu.")
 
 # Tab lý thuyết K-means
-def show_kmeans_theory():
+def ly_thuyet_K_means():
     st.title("Lý thuyết về K-Means Clustering")
     
     st.header("1. Giới thiệu về K-Means")
