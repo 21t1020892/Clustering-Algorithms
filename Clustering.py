@@ -260,8 +260,8 @@ def clustering():
 
     clustering_method = st.selectbox("Chọn kỹ thuật phân cụm:", ["K-means", "DBSCAN"])
     
-    run_name = st.text_input("🔹 Nhập tên Run:", "Default_Run")
-    st.session_state["run_name"] = run_name if run_name else "Default_Run"
+    run_name = st.text_input("🔹 Nhập tên Run:", "Clustering_Run")
+    st.session_state["run_name"] = run_name if run_name else "Clustering_Run"
 
     if "clustering_results" not in st.session_state:
         st.session_state.clustering_results = None
@@ -342,6 +342,13 @@ def clustering():
         """)
         eps = st.slider("eps (khoảng cách tối đa):", 0.1, 10.0, 1.0)
         min_samples = st.slider("min_samples (số mẫu tối thiểu):", 1, 20, 5)
+        min_val = 1
+        max_val = 10  # Giả sử đây là giá trị hợp lệ
+        if min_val >= max_val:
+            max_val = min_val + 1  # Đảm bảo max > min
+
+        st.slider("Chọn số chiều giảm xuống", min_value=min_val, max_value=max_val, value=min_val)
+
 
         if st.button("Phân cụm với DBSCAN"):
             with mlflow.start_run(run_name=f"DBSCAN_{st.session_state['run_name']}"):
