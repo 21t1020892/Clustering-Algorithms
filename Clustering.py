@@ -74,63 +74,55 @@ def data():
         st.info("ℹ️ Nhấn nút 'Tải dữ liệu từ OpenML' để tải và hiển thị dữ liệu.")
 
 # Tab lý thuyết K-means
-def ly_thuyet_K_means():
-    st.header("📌 Lý thuyết K-Means")
-    st.markdown("""
-    - **K-Means** là một thuật toán phân cụm **không giám sát** (unsupervised learning) nhằm chia dữ liệu thành **K cụm** (clusters) dựa trên sự tương đồng giữa các điểm dữ liệu. Thuật toán sử dụng **khoảng cách Euclidean** để đo lường sự gần gũi giữa các điểm và tâm cụm (centroids).
-    """)
-
-    st.subheader("🔍 Cách hoạt động chi tiết")
-    st.markdown("""
-    Thuật toán K-Means hoạt động qua các bước lặp đi lặp lại như sau:
-    """)
-
-
-    with st.expander("1. Bước 1: Khởi tạo tâm cụm (Initialization)"):
-        st.markdown("""
-        - Chọn ngẫu nhiên **K điểm** từ tập dữ liệu làm **tâm cụm ban đầu** (centroids).  
-        - **Ví dụ**: Với \( K = 3 \), chọn 3 điểm ngẫu nhiên từ tập MNIST làm các tâm cụm khởi đầu.
-        """)
-
-    with st.expander("2. Bước 2: Gán nhãn cụm (Assignment Step)"):
-        st.markdown("""
-        - Với mỗi điểm dữ liệu trong tập, tính **khoảng cách Euclidean** đến tất cả các tâm cụm.  
-        - Gán điểm đó vào cụm có tâm gần nhất.  
-        - **Công thức khoảng cách Euclidean**:  
-        """)
-        st.latex(r"d(x, c) = \sqrt{\sum_{i=1}^{n} (x_i - c_i)^2}")
-        st.markdown("""
-        Trong đó:  
-        - \( x \): Điểm dữ liệu.  
-        - \( c \): Tâm cụm.  
-        - \( n \): Số chiều của dữ liệu (với MNIST là 784).
-        """)
-
-    with st.expander("3. Bước 3: Cập nhật tâm cụm (Update Step)"):
-        st.markdown("""
-        - Sau khi gán tất cả điểm vào các cụm, tính lại **tâm cụm mới** bằng cách lấy **trung bình tọa độ** của mọi điểm trong cụm đó.  
-        - **Công thức**:  
-        """)
-        st.latex(r"c_j = \frac{1}{N_j} \sum_{x \in C_j} x")
-        st.markdown("""
-        Trong đó:  
-        - $c_j$: Tâm cụm thứ $j$  
-        - $N_j$: Số điểm trong cụm $j$  
-        - $C_j$: Tập hợp các điểm thuộc cụm $j$  
-        """)
-
-    with st.expander("4. Bước 4: Lặp lại (Iteration)"):
-        st.markdown("""
-        - Quay lại bước 2, lặp lại quá trình gán nhãn và cập nhật tâm cụm cho đến khi:  
-          - Các tâm cụm không còn thay đổi đáng kể (hội tụ).  
-          - Hoặc đạt số lần lặp tối đa (max iterations).
-        """)
-
-    st.subheader("💡 Ví dụ với MNIST")
-    st.markdown("""
-    - Nếu \( K = 10 \) (số chữ số từ 0-9), K-Means sẽ cố gắng nhóm các ảnh chữ số thành 10 cụm.  
-    - Ban đầu, chọn 10 ảnh ngẫu nhiên làm tâm. Sau vài lần lặp, các tâm cụm dần đại diện cho các nhóm chữ số (ví dụ: cụm 0 chứa hầu hết ảnh số 0).
-    """)
+def show_kmeans_theory():
+    st.title("Lý thuyết về K-Means Clustering")
+    
+    st.header("1. Giới thiệu về K-Means")
+    st.write(
+        "K-Means là một thuật toán phân cụm phổ biến dùng để nhóm dữ liệu vào K cụm dựa trên đặc trưng tương đồng. "
+        "Thuật toán này tối ưu hóa vị trí các tâm cụm (centroids) để giảm khoảng cách giữa các điểm dữ liệu và tâm cụm."
+    )
+    
+    st.header("2. Các bước của thuật toán K-Means")
+    st.markdown(
+        "**Bước 1:** Chọn số cụm K và khởi tạo K tâm cụm ban đầu (có thể chọn ngẫu nhiên).  "
+        "**Bước 2:** Gán mỗi điểm dữ liệu vào cụm gần nhất dựa trên khoảng cách Euclidean.  "
+        "**Bước 3:** Cập nhật lại tâm cụm bằng cách tính trung bình các điểm trong mỗi cụm.  "
+        "**Bước 4:** Lặp lại quá trình gán điểm dữ liệu và cập nhật tâm cụm cho đến khi hội tụ (tâm cụm không thay đổi hoặc thay đổi rất ít)."
+    )
+    
+    st.header("3. Công thức toán học")
+    st.write("Khoảng cách Euclidean giữa hai điểm dữ liệu x và tâm cụm c được tính bằng công thức:")
+    st.latex(r""" d(x, c) = \sqrt{\sum_{i=1}^{n} (x_i - c_i)^2} """)
+    
+    st.write("Cập nhật tâm cụm bằng trung bình cộng của tất cả các điểm trong cụm:")
+    st.latex(r""" c_j = \frac{1}{|C_j|} \sum_{x_i \in C_j} x_i """)
+    
+    st.header("4. Nhược điểm của K-Means")
+    st.write(
+        "- Nhạy cảm với giá trị khởi tạo của tâm cụm.  "
+        "- Khó chọn số cụm K phù hợp.  "
+        "- Không hiệu quả với dữ liệu có hình dạng cụm phi cầu hoặc có nhiễu."
+    )
+    
+    st.header("5. Ứng dụng của K-Means")
+    st.write(
+        "- Phân cụm khách hàng trong marketing.  "
+        "- Phân loại ảnh, nhận diện mẫu.  "
+        "- Phát hiện bất thường trong dữ liệu."
+    )
+    
+    st.header("6. Mã giả thuật toán K-Means")
+    st.code(
+        """
+        Khởi tạo K tâm cụm ban đầu.
+        Lặp lại:
+            - Gán mỗi điểm dữ liệu vào cụm gần nhất.
+            - Cập nhật tâm cụm bằng trung bình của các điểm trong cụm.
+        Cho đến khi hội tụ.
+        """,
+        language="python"
+    )
 
 # Tab lý thuyết DBSCAN
 def ly_thuyet_DBSCAN():
