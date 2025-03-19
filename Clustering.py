@@ -112,6 +112,15 @@ def ly_thuyet_K_means():
         "- Phát hiện bất thường trong dữ liệu."
     )
 
+    st.header("6. Silhouette Score")
+    st.write(
+        "Silhouette Score là một phương pháp đánh giá chất lượng phân cụm, phản ánh mức độ tương đồng của một điểm dữ liệu với cụm của nó so với các cụm khác. "
+        "Giá trị của Silhouette Score dao động từ -1 đến 1, trong đó giá trị càng cao thì phân cụm càng tốt."
+    )
+    
+    st.write("Công thức tính Silhouette Score cho một điểm dữ liệu i:")
+    st.latex(r""" s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))} """)
+
 
 # Tab lý thuyết DBSCAN
 # def ly_thuyet_DBSCAN():
