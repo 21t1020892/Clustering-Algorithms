@@ -85,9 +85,9 @@ def ly_thuyet_K_means():
     
     st.header("2. Các bước của thuật toán K-Means")
     st.markdown(
-        "**Bước 1:** Chọn số cụm K và khởi tạo K tâm cụm ban đầu (có thể chọn ngẫu nhiên).  "
-        "**Bước 2:** Gán mỗi điểm dữ liệu vào cụm gần nhất dựa trên khoảng cách Euclidean.  "
-        "**Bước 3:** Cập nhật lại tâm cụm bằng cách tính trung bình các điểm trong mỗi cụm.  "
+        "**Bước 1:** Chọn số cụm K và khởi tạo K tâm cụm ban đầu (có thể chọn ngẫu nhiên).  \n"
+        "**Bước 2:** Gán mỗi điểm dữ liệu vào cụm gần nhất dựa trên khoảng cách Euclidean.  \n"
+        "**Bước 3:** Cập nhật lại tâm cụm bằng cách tính trung bình các điểm trong mỗi cụm.  \n"
         "**Bước 4:** Lặp lại quá trình gán điểm dữ liệu và cập nhật tâm cụm cho đến khi hội tụ (tâm cụm không thay đổi hoặc thay đổi rất ít)."
     )
     
@@ -100,87 +100,76 @@ def ly_thuyet_K_means():
     
     st.header("4. Nhược điểm của K-Means")
     st.write(
-        "- Nhạy cảm với giá trị khởi tạo của tâm cụm.  "
-        "- Khó chọn số cụm K phù hợp.  "
+        "- Nhạy cảm với giá trị khởi tạo của tâm cụm.  \n"
+        "- Khó chọn số cụm K phù hợp.  \n"
         "- Không hiệu quả với dữ liệu có hình dạng cụm phi cầu hoặc có nhiễu."
     )
     
     st.header("5. Ứng dụng của K-Means")
     st.write(
-        "- Phân cụm khách hàng trong marketing.  "
-        "- Phân loại ảnh, nhận diện mẫu.  "
+        "- Phân cụm khách hàng trong marketing.  \n"
+        "- Phân loại ảnh, nhận diện mẫu.  \n"
         "- Phát hiện bất thường trong dữ liệu."
     )
-    
-    st.header("6. Mã giả thuật toán K-Means")
-    st.code(
-        """
-        Khởi tạo K tâm cụm ban đầu.
-        Lặp lại:
-            - Gán mỗi điểm dữ liệu vào cụm gần nhất.
-            - Cập nhật tâm cụm bằng trung bình của các điểm trong cụm.
-        Cho đến khi hội tụ.
-        """,
-        language="python"
-    )
+
 
 # Tab lý thuyết DBSCAN
-def ly_thuyet_DBSCAN():
-    st.header("📌 Lý thuyết DBSCAN")
-    st.write("""
-    - **DBSCAN** (Density-Based Spatial Clustering of Applications with Noise) là một thuật toán phân cụm **không giám sát** dựa trên **mật độ** của các điểm dữ liệu. 
-    - Khác với K-Means, DBSCAN không yêu cầu xác định trước số cụm, mà tự động tìm các cụm dựa trên phân bố dữ liệu và có khả năng phát hiện **nhiễu** (noise).
-    """)
+# def ly_thuyet_DBSCAN():
+#     st.header("📌 Lý thuyết DBSCAN")
+#     st.write("""
+#     - **DBSCAN** (Density-Based Spatial Clustering of Applications with Noise) là một thuật toán phân cụm **không giám sát** dựa trên **mật độ** của các điểm dữ liệu. 
+#     - Khác với K-Means, DBSCAN không yêu cầu xác định trước số cụm, mà tự động tìm các cụm dựa trên phân bố dữ liệu và có khả năng phát hiện **nhiễu** (noise).
+#     """)
 
-    st.subheader("🔍 Cách hoạt động chi tiết")
-    st.markdown("""
-    DBSCAN phân cụm dựaLIM trên hai tham số chính:  
-    - **eps**: Bán kính lân cận (khoảng cách tối đa giữa hai điểm để coi là "gần nhau").  
-    - **min_samples**: Số điểm tối thiểu trong vùng lân cận để hình thành một cụm.  
-    Các bước cụ thể:
-    """)
+#     st.subheader("🔍 Cách hoạt động chi tiết")
+#     st.markdown("""
+#     DBSCAN phân cụm dựaLIM trên hai tham số chính:  
+#     - **eps**: Bán kính lân cận (khoảng cách tối đa giữa hai điểm để coi là "gần nhau").  
+#     - **min_samples**: Số điểm tối thiểu trong vùng lân cận để hình thành một cụm.  
+#     Các bước cụ thể:
+#     """)
 
 
-    with st.expander("1. Bước 1: Xác định các loại điểm (Point Classification)"):
-        st.markdown("""
-        - **Core Point (Điểm lõi)**: Một điểm có ít nhất **min_samples** láng giềng (bao gồm chính nó) trong bán kính **eps**.  
-        - **Border Point (Điểm ranh giới)**: Không phải điểm lõi, nhưng nằm trong bán kính **eps** của ít nhất một điểm lõi.  
-        - **Noise Point (Điểm nhiễu)**: Không phải điểm lõi, không nằm trong bán kính **eps** của bất kỳ điểm lõi nào.  
-        - **Ví dụ**: Với MNIST, một điểm lõi có thể là trung tâm của vùng chữ số "0", các điểm ranh giới là viền, và nhiễu là các nét lỗi.
-        """)
+#     with st.expander("1. Bước 1: Xác định các loại điểm (Point Classification)"):
+#         st.markdown("""
+#         - **Core Point (Điểm lõi)**: Một điểm có ít nhất **min_samples** láng giềng (bao gồm chính nó) trong bán kính **eps**.  
+#         - **Border Point (Điểm ranh giới)**: Không phải điểm lõi, nhưng nằm trong bán kính **eps** của ít nhất một điểm lõi.  
+#         - **Noise Point (Điểm nhiễu)**: Không phải điểm lõi, không nằm trong bán kính **eps** của bất kỳ điểm lõi nào.  
+#         - **Ví dụ**: Với MNIST, một điểm lõi có thể là trung tâm của vùng chữ số "0", các điểm ranh giới là viền, và nhiễu là các nét lỗi.
+#         """)
 
-    with st.expander("2. Bước 2: Khởi tạo cụm (Cluster Initialization)"):
-        st.markdown("""
-        - Chọn một **điểm lõi chưa thăm** (unvisited core point) làm hạt giống (seed).  
-        - Tạo cụm mới từ điểm này để bắt đầu quá trình phân cụm.
-        """)
+#     with st.expander("2. Bước 2: Khởi tạo cụm (Cluster Initialization)"):
+#         st.markdown("""
+#         - Chọn một **điểm lõi chưa thăm** (unvisited core point) làm hạt giống (seed).  
+#         - Tạo cụm mới từ điểm này để bắt đầu quá trình phân cụm.
+#         """)
 
-    with st.expander("3. Bước 3: Mở rộng cụm (Cluster Expansion)"):
-        st.markdown("""
-        - Thêm tất cả các điểm trong bán kính **eps** của điểm lõi vào cụm.  
-        - Nếu một điểm được thêm là điểm lõi, tiếp tục mở rộng cụm từ điểm đó (đệ quy).  
-        - **Công thức khoảng cách Euclidean**:  
-        """)
-        st.latex(r"d(x, y) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}")
-        st.markdown("""
-        Trong đó:  
-        - \( x, y \): Hai điểm dữ liệu.  
-        - \( n \): Số chiều (784 với MNIST).
-        """)
+#     with st.expander("3. Bước 3: Mở rộng cụm (Cluster Expansion)"):
+#         st.markdown("""
+#         - Thêm tất cả các điểm trong bán kính **eps** của điểm lõi vào cụm.  
+#         - Nếu một điểm được thêm là điểm lõi, tiếp tục mở rộng cụm từ điểm đó (đệ quy).  
+#         - **Công thức khoảng cách Euclidean**:  
+#         """)
+#         st.latex(r"d(x, y) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}")
+#         st.markdown("""
+#         Trong đó:  
+#         - \( x, y \): Hai điểm dữ liệu.  
+#         - \( n \): Số chiều (784 với MNIST).
+#         """)
 
-    with st.expander("4. Bước 4: Đánh dấu nhiễu và lặp lại"):
-        st.markdown("""
-        - Các điểm không thuộc bất kỳ cụm nào được đánh dấu là **nhiễu**.  
-        - Chọn điểm lõi chưa thăm tiếp theo, lặp lại quá trình cho đến khi tất cả điểm được xử lý.
-        """)
+#     with st.expander("4. Bước 4: Đánh dấu nhiễu và lặp lại"):
+#         st.markdown("""
+#         - Các điểm không thuộc bất kỳ cụm nào được đánh dấu là **nhiễu**.  
+#         - Chọn điểm lõi chưa thăm tiếp theo, lặp lại quá trình cho đến khi tất cả điểm được xử lý.
+#         """)
 
-    st.subheader("💡 Ví dụ với MNIST")
-    st.markdown("""
-    - Nếu **eps = 0.5** và **min_samples = 5**, DBSCAN có thể:  
-      - Tìm các cụm dày đặc (như vùng chữ số giống nhau, ví dụ: các ảnh "1" thẳng đứng).  
-      - Loại bỏ các nét vẽ bất thường hoặc các ảnh khác biệt lớn (như "1" nghiêng quá xa) làm nhiễu.  
-    - Kết quả: Số cụm không cố định, phụ thuộc vào mật độ dữ liệu.
-    """)
+#     st.subheader("💡 Ví dụ với MNIST")
+#     st.markdown("""
+#     - Nếu **eps = 0.5** và **min_samples = 5**, DBSCAN có thể:  
+#       - Tìm các cụm dày đặc (như vùng chữ số giống nhau, ví dụ: các ảnh "1" thẳng đứng).  
+#       - Loại bỏ các nét vẽ bất thường hoặc các ảnh khác biệt lớn (như "1" nghiêng quá xa) làm nhiễu.  
+#     - Kết quả: Số cụm không cố định, phụ thuộc vào mật độ dữ liệu.
+#     """)
 
 # Tab phân cụm
 def clustering():
@@ -250,7 +239,7 @@ def clustering():
 
     X_train = st.session_state.X_train
 
-    clustering_method = st.selectbox("Chọn kỹ thuật phân cụm:", ["K-means", "DBSCAN"])
+    clustering_method = st.selectbox("Chọn kỹ thuật phân cụm:", ["K-means"])
     
     run_name = st.text_input("🔹 Nhập tên Run:", "Clustering_Run")
     st.session_state["run_name"] = run_name if run_name else "Clustering_Run"
@@ -325,101 +314,101 @@ def clustering():
                         "status": "failed"
                     }
 
-    elif clustering_method == "DBSCAN":
-        st.markdown("""
-        - **DBSCAN**: Phân cụm dựa trên mật độ, không cần chỉ định số cụm trước.
-        - **Tham số:**
-        - **eps**: Khoảng cách tối đa giữa hai điểm để coi là cùng cụm.
-        - **min_samples**: Số lượng điểm tối thiểu để tạo thành một cụm.
-        """)
+    # elif clustering_method == "DBSCAN":
+    #     st.markdown("""
+    #     - **DBSCAN**: Phân cụm dựa trên mật độ, không cần chỉ định số cụm trước.
+    #     - **Tham số:**
+    #     - **eps**: Khoảng cách tối đa giữa hai điểm để coi là cùng cụm.
+    #     - **min_samples**: Số lượng điểm tối thiểu để tạo thành một cụm.
+    #     """)
         
-        eps = st.slider("eps (khoảng cách tối đa):", 0.1, 10.0, 1.0)
-        min_samples = st.slider("min_samples (số mẫu tối thiểu):", 1, 20, 5)
+    #     eps = st.slider("eps (khoảng cách tối đa):", 0.1, 10.0, 1.0)
+    #     min_samples = st.slider("min_samples (số mẫu tối thiểu):", 1, 20, 5)
 
-        # Sửa lỗi min_value >= max_value
-        min_val = 1
-        max_val = 10  # Giá trị tối đa có thể bị thay đổi
+    #     # Sửa lỗi min_value >= max_value
+    #     min_val = 1
+    #     max_val = 10  # Giá trị tối đa có thể bị thay đổi
 
-        if min_val >= max_val:
-            max_val = min_val + 1  # Đảm bảo max_val luôn lớn hơn min_val
+    #     if min_val >= max_val:
+    #         max_val = min_val + 1  # Đảm bảo max_val luôn lớn hơn min_val
 
-        selected_dim = st.slider("Chọn số chiều giảm xuống", min_value=min_val, max_value=max_val, value=min_val)
+    #     selected_dim = st.slider("Chọn số chiều giảm xuống", min_value=min_val, max_value=max_val, value=min_val)
 
-        if st.button("Phân cụm với DBSCAN"):
-            with mlflow.start_run(run_name=f"DBSCAN_{st.session_state['run_name']}"):
-                st.write("⏳ Đang chạy DBSCAN...")
-                progress_bar = st.progress(0)
+    #     if st.button("Phân cụm với DBSCAN"):
+    #         with mlflow.start_run(run_name=f"DBSCAN_{st.session_state['run_name']}"):
+    #             st.write("⏳ Đang chạy DBSCAN...")
+    #             progress_bar = st.progress(0)
 
-                try:
-                    model = DBSCAN(eps=eps, min_samples=min_samples)
+    #             try:
+    #                 model = DBSCAN(eps=eps, min_samples=min_samples)
                     
-                    # Bổ sung thanh trạng thái
-                    progress_bar.progress(0.1)  # Bắt đầu
-                    model.fit(X_train)
-                    progress_bar.progress(0.7)  # Sau khi fit
-                    labels = model.labels_
+    #                 # Bổ sung thanh trạng thái
+    #                 progress_bar.progress(0.1)  # Bắt đầu
+    #                 model.fit(X_train)
+    #                 progress_bar.progress(0.7)  # Sau khi fit
+    #                 labels = model.labels_
                     
-                    # Kiểm tra nếu DBSCAN phân cụm thành công
-                    if len(set(labels)) > 1 and not all(label == -1 for label in labels):
-                        silhouette_avg = silhouette_score(X_train, labels)
-                    else:
-                        silhouette_avg = None
+    #                 # Kiểm tra nếu DBSCAN phân cụm thành công
+    #                 if len(set(labels)) > 1 and not all(label == -1 for label in labels):
+    #                     silhouette_avg = silhouette_score(X_train, labels)
+    #                 else:
+    #                     silhouette_avg = None
                     
-                    progress_bar.progress(1.0)  # Hoàn thành
+    #                 progress_bar.progress(1.0)  # Hoàn thành
 
-                    mlflow.log_param("method", "DBSCAN")
-                    mlflow.log_param("eps", eps)
-                    mlflow.log_param("min_samples", min_samples)
-                    mlflow.log_param("num_samples", X_train.shape[0])
+    #                 mlflow.log_param("method", "DBSCAN")
+    #                 mlflow.log_param("eps", eps)
+    #                 mlflow.log_param("min_samples", min_samples)
+    #                 mlflow.log_param("num_samples", X_train.shape[0])
                     
-                    if silhouette_avg is not None:
-                        mlflow.log_metric("silhouette_score", silhouette_avg)
+    #                 if silhouette_avg is not None:
+    #                     mlflow.log_metric("silhouette_score", silhouette_avg)
                     
-                    mlflow.sklearn.log_model(model, "dbscan_model")
+    #                 mlflow.sklearn.log_model(model, "dbscan_model")
 
-                    st.session_state.clustering_results = {
-                        "method": "DBSCAN",
-                        "labels": labels,
-                        "silhouette_score": silhouette_avg,
-                        "run_name": f"DBSCAN_{st.session_state['run_name']}",
-                        "status": "success"
-                    }
+    #                 st.session_state.clustering_results = {
+    #                     "method": "DBSCAN",
+    #                     "labels": labels,
+    #                     "silhouette_score": silhouette_avg,
+    #                     "run_name": f"DBSCAN_{st.session_state['run_name']}",
+    #                     "status": "success"
+    #                 }
 
-                    if "models" not in st.session_state:
-                        st.session_state.models = []
+    #                 if "models" not in st.session_state:
+    #                     st.session_state.models = []
 
-                    st.session_state.models.append({
-                        "name": "dbscan",
-                        "run_name": f"DBSCAN_{st.session_state['run_name']}",
-                        "model": model,
-                        "X_train": X_train,
-                        "eps": eps,
-                        "min_samples": min_samples,
-                        "labels": labels
-                    })
+    #                 st.session_state.models.append({
+    #                     "name": "dbscan",
+    #                     "run_name": f"DBSCAN_{st.session_state['run_name']}",
+    #                     "model": model,
+    #                     "X_train": X_train,
+    #                     "eps": eps,
+    #                     "min_samples": min_samples,
+    #                     "labels": labels
+    #                 })
 
-                except Exception as e:
-                    error_message = str(e)
-                    st.error(f"❌ Lỗi khi chạy DBSCAN: {error_message}")
+    #             except Exception as e:
+    #                 error_message = str(e)
+    #                 st.error(f"❌ Lỗi khi chạy DBSCAN: {error_message}")
                     
-                    if "memory" in error_message.lower():
-                        st.error("⚠️ Lỗi này có thể do chọn toàn bộ dữ liệu (70,000 mẫu). Hãy giảm số lượng mẫu!")
+    #                 if "memory" in error_message.lower():
+    #                     st.error("⚠️ Lỗi này có thể do chọn toàn bộ dữ liệu (70,000 mẫu). Hãy giảm số lượng mẫu!")
                     
-                    progress_bar.progress(0)  # Reset thanh trạng thái
+    #                 progress_bar.progress(0)  # Reset thanh trạng thái
                     
-                    mlflow.log_param("method", "DBSCAN")
-                    mlflow.log_param("eps", eps)
-                    mlflow.log_param("min_samples", min_samples)
-                    mlflow.log_param("num_samples", X_train.shape[0])
-                    mlflow.log_param("status", "failed")
-                    mlflow.log_param("error_message", error_message)
+    #                 mlflow.log_param("method", "DBSCAN")
+    #                 mlflow.log_param("eps", eps)
+    #                 mlflow.log_param("min_samples", min_samples)
+    #                 mlflow.log_param("num_samples", X_train.shape[0])
+    #                 mlflow.log_param("status", "failed")
+    #                 mlflow.log_param("error_message", error_message)
 
-                    st.session_state.clustering_results = {
-                        "method": "DBSCAN",
-                        "error_message": error_message,
-                        "run_name": f"DBSCAN_{st.session_state['run_name']}",
-                        "status": "failed"
-                    }
+    #                 st.session_state.clustering_results = {
+    #                     "method": "DBSCAN",
+    #                     "error_message": error_message,
+    #                     "run_name": f"DBSCAN_{st.session_state['run_name']}",
+    #                     "status": "failed"
+    #                 }
 
 
     # Hiển thị kết quả
@@ -497,46 +486,46 @@ def predict():
                 ax.axis("off")
             st.pyplot(fig)
 
-    elif model_name == "dbscan":
-        labels = selected_model_info["labels"]
-        X_train = selected_model_info["X_train"]
-        if len(np.unique(labels)) > 1 and not np.all(labels == -1):
-            silhouette_avg = silhouette_score(X_train, labels)
-        else:
-            silhouette_avg = None
-        st.write(f"**Phương pháp:** DBSCAN")
-        st.write(f"**Số lượng cụm:** {len(np.unique(labels)) - (1 if -1 in labels else 0)} (không tính nhiễu)")
-        st.write(f"**Số điểm nhiễu:** {np.sum(labels == -1)}")
-        if silhouette_avg is not None:
-            st.write(f"**Silhouette Score:** {silhouette_avg:.4f}")
-        else:
-            st.write("**Silhouette Score:** Không tính được (quá ít cụm hoặc tất cả là nhiễu)")
+    # elif model_name == "dbscan":
+    #     labels = selected_model_info["labels"]
+    #     X_train = selected_model_info["X_train"]
+    #     if len(np.unique(labels)) > 1 and not np.all(labels == -1):
+    #         silhouette_avg = silhouette_score(X_train, labels)
+    #     else:
+    #         silhouette_avg = None
+    #     st.write(f"**Phương pháp:** DBSCAN")
+    #     st.write(f"**Số lượng cụm:** {len(np.unique(labels)) - (1 if -1 in labels else 0)} (không tính nhiễu)")
+    #     st.write(f"**Số điểm nhiễu:** {np.sum(labels == -1)}")
+    #     if silhouette_avg is not None:
+    #         st.write(f"**Silhouette Score:** {silhouette_avg:.4f}")
+    #     else:
+    #         st.write("**Silhouette Score:** Không tính được (quá ít cụm hoặc tất cả là nhiễu)")
 
-        # Hiển thị hình ảnh mẫu từ các cụm
-        st.subheader("Hình ảnh mẫu từ các cụm")
-        unique_labels = np.unique(labels)
-        max_clusters_to_display = st.slider("Số lượng cụm muốn hiển thị:", 1, len(unique_labels), min(5, len(unique_labels)), key="dbscan_clusters_display")
-        for label in unique_labels[:max_clusters_to_display]:
-            if label != -1:  # Không hiển thị nhiễu
-                st.write(f"Cụm {label}:")
-                cluster_samples = X_train[labels == label][:5]
-                fig, axes = plt.subplots(1, min(5, len(cluster_samples)), figsize=(10, 2))
-                if len(cluster_samples) == 1:
-                    axes = [axes]
-                for ax, sample in zip(axes, cluster_samples):
-                    ax.imshow(sample.reshape(28, 28), cmap='gray')
-                    ax.axis("off")
-                st.pyplot(fig)
-            else:
-                st.write("Nhiễu (-1):")
-                noise_samples = X_train[labels == -1][:5]
-                fig, axes = plt.subplots(1, min(5, len(noise_samples)), figsize=(10, 2))
-                if len(noise_samples) == 1:
-                    axes = [axes]
-                for ax, sample in zip(axes, noise_samples):
-                    ax.imshow(sample.reshape(28, 28), cmap='gray')
-                    ax.axis("off")
-                st.pyplot(fig)
+    #     # Hiển thị hình ảnh mẫu từ các cụm
+    #     st.subheader("Hình ảnh mẫu từ các cụm")
+    #     unique_labels = np.unique(labels)
+    #     max_clusters_to_display = st.slider("Số lượng cụm muốn hiển thị:", 1, len(unique_labels), min(5, len(unique_labels)), key="dbscan_clusters_display")
+    #     for label in unique_labels[:max_clusters_to_display]:
+    #         if label != -1:  # Không hiển thị nhiễu
+    #             st.write(f"Cụm {label}:")
+    #             cluster_samples = X_train[labels == label][:5]
+    #             fig, axes = plt.subplots(1, min(5, len(cluster_samples)), figsize=(10, 2))
+    #             if len(cluster_samples) == 1:
+    #                 axes = [axes]
+    #             for ax, sample in zip(axes, cluster_samples):
+    #                 ax.imshow(sample.reshape(28, 28), cmap='gray')
+    #                 ax.axis("off")
+    #             st.pyplot(fig)
+    #         else:
+    #             st.write("Nhiễu (-1):")
+    #             noise_samples = X_train[labels == -1][:5]
+    #             fig, axes = plt.subplots(1, min(5, len(noise_samples)), figsize=(10, 2))
+    #             if len(noise_samples) == 1:
+    #                 axes = [axes]
+    #             for ax, sample in zip(axes, noise_samples):
+    #                 ax.imshow(sample.reshape(28, 28), cmap='gray')
+    #                 ax.axis("off")
+    #             st.pyplot(fig)
     
 
 
@@ -641,7 +630,7 @@ def main():
         
     st.title("🖍️ MNIST Clustering App (OpenML)")
     
-    tab1, tab2, tab3, tab4, tab5 = st.tabs(["📘 Data", "📚 K-means", "📚 DBSCAN", "⚙️ Huấn Luyện", "✍️ Demo"])
+    tab1, tab2, tab3, tab4 = st.tabs(["📘 Data", "📚 K-means", "⚙️ Huấn Luyện", "✍️ Demo"])
     
     with tab1:
         data()
@@ -650,12 +639,9 @@ def main():
         ly_thuyet_K_means()
         
     with tab3:
-        ly_thuyet_DBSCAN()
-        
-    with tab4:
         clustering()
         
-    with tab5:
+    with tab4:
         predict()
 
 if __name__ == "__main__":
